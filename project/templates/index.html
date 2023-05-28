@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask File Upload Example</title>
+    <style>
+        body {
+            background-color: #d1dbe4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .left-section {
+            width: 50%;
+           
+        }
+
+        .right-section {
+            width: 60%;
+            height: 100%;
+            background-image: url('https://0.rc.xiniu.com/g1/M00/3A/95/CgAGS12Dsf6ALRHRAABuXc16T2k276.jpg');
+            background-size: cover;
+            color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .chat-container {
+            background-color: #A3B7CA;
+            border-radius: 70px;
+            padding: 50px;
+            margin-left:15%;
+            box-shadow: 40px 40px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 50%;
+            height:10%;
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: purple;
+        }
+
+        .chat-container form {
+            text-align: center;
+        }
+
+        .chat-container input[type="file"] {
+            display: block;
+            margin: 10px auto;
+        }
+
+        .chat-container button[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            
+        }
+
+        .left-section p {
+            color: #194a7a;
+            font-size: 30px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .google-form-logo {
+            display: block;
+            margin: 20px auto;
+            max-width: 200px;
+        }
+
+        .chat-container button[type="submit"] {
+            background-color: #194a7a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .chat-container button[type="submit"]:hover {
+            background-color: #133450;
+        }
+
+        .upload-symbol {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% if text %}
+    <p>{{text}}</p>
+    {% endif %}
+    <div class="left-section">
+        <p>
+            <span>Greetings!</span>
+            <p>As an AI-powered assistant, I'm here to offer you a hassle-free experience by effortlessly generating your quiz on Google Forms with just a single click.</p>
+            <p>Discover the possibilities and start creating your quiz now.</p>
+        </p>
+       
+        
+        <div class="chat-container">
+            <h1>speech2Quiz</h1>
+            <form action="{{ url_for('speech_to_text') }}" method="POST" enctype="multipart/form-data">
+                <label for="file">Select a file:</label>
+                <div>
+                    <input type="file" name="audio_file" id="file">
+                    <span class="upload-symbol">&#8681;</span>
+                </div>
+                <button type="submit">Upload</button>
+            </form>
+            <div id="result-container">
+                <p id="recognized-text">{{ recognized_text }}</p>
+                <p id="form-url">your link click here: <p id="form-url"> <a href="{{ form_url }}" style="word-wrap: break-word;max-height: 10px; max-width: 10px;">{{ form_url }}</a></p>
+
+
+            </div>
+        </div>
+        <div id="result-container">
+            <!-- Zone où le texte reconnu sera affiché -->
+            <p id="recognized-text"></p>
+
+        </div>
+    </div>
+    <div class="right-section">
+        <img src="">
+    </div>
+</body>
+</html>
